@@ -25,6 +25,8 @@ unsigned long epoch;
 unsigned long epochtest;
 bool connected = false;
 bool ntpsuccess = false;
+int adder = 0;
+int adderResetTime = 0;
 
 RTCZero rtc;
 
@@ -185,16 +187,39 @@ void loop() {
 		move(change);
 		change = !change;
 	}
+
+	// Adjust time every minute
 	if (rtc.getSeconds() == 0)
 	{
 		Serial.print("Seconds: ");
 		Serial.println(0);
 		move(change);
 		change = !change;
+		if (adder == 0)
+		{
+			adderResetTime = rtc.getMinutes();
+		}
+		adder = adder++;
 	}
 
-	if (rtc.getMinutes() == 30 && rtc.getSeconds() == 5)
+	// If for some reason clock jumps some adjustment, sync once in an hour.
+	if (rtc.getMinutes() == 0 && rtc.getSeconds() == 5)
+	{
+		if (adder < (60-adderResetTime))
+		{
+			int addminutes = (60 - adderResetTime) - adder;
+			while (addminutes > 0)
+			{
+				move(change);
+				change = !change;
+				addminutes--;
+			}
+		}
+		adder = 0;
+	}
 
+	// check sync rtc with ntp every hour
+	if (rtc.getMinutes() == 30 && rtc.getSeconds() == 5)
 	{
 		// attempt to connect to WiFi network:
 		if (WiFi.status() != 3) {
