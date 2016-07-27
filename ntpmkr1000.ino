@@ -24,7 +24,7 @@ unsigned long epoch;
 unsigned long epochtest;
 bool connected = false;
 bool ntpsuccess = false;
-int adder = 0;
+int adder = 1;
 int adderResetTime = 0;
 int y = 0;
 int dow = 0;
@@ -209,7 +209,7 @@ void loop() {
 		Serial.println(0);
 		move(change);
 		change = !change;
-		if (adder == 0)
+		if (adder == 1)
 		{
 			adderResetTime = m;
 		}

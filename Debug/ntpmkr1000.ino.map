@@ -3431,7 +3431,7 @@ LOAD c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-non
                 0x00008b58                __exidx_end = .
                 0x00008b58                __etext = .
 
-.data           0x20000000      0x18c load address 0x00008b58
+.data           0x20000000      0x190 load address 0x00008b58
                 0x20000000                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -3443,109 +3443,109 @@ LOAD c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-non
  .data.localPort
                 0x20000004        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
                 0x20000004                localPort
- .data.pass     0x20000008       0x10 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000008                pass
- .data.ssid     0x20000018        0x9 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000018                ssid
- *fill*         0x20000021        0x1 
+ .data.adder    0x20000008        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000008                adder
+ .data.pass     0x2000000c       0x10 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x2000000c                pass
+ .data.ssid     0x2000001c        0x9 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x2000001c                ssid
+ *fill*         0x20000025        0x1 
  .data.egstrNmBusCapabilities
-                0x20000022        0x2 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\bus_wrapper\source\nm_bus_wrapper_samd21.cpp.o
-                0x20000022                egstrNmBusCapabilities
+                0x20000026        0x2 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\bus_wrapper\source\nm_bus_wrapper_samd21.cpp.o
+                0x20000026                egstrNmBusCapabilities
  .data.clk_status_reg_adr
-                0x20000024        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\driver\source\nmasic.c.o
+                0x20000028        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\driver\source\nmasic.c.o
  .data.SystemCoreClock
-                0x20000028        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(wiring.c.o)
-                0x20000028                SystemCoreClock
+                0x2000002c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(wiring.c.o)
+                0x2000002c                SystemCoreClock
  .data._ZL5ticks
-                0x2000002c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(Reset.cpp.o)
+                0x20000030        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(Reset.cpp.o)
  .data._ZL10breakValue
-                0x20000030        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
+                0x20000034        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
  .data._ZL13_cdcInterface
-                0x20000034       0x42 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
- *fill*         0x20000076        0x2 
+                0x20000038       0x42 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
+ *fill*         0x2000007a        0x2 
  .data._ZL12_usbLineInfo
-                0x20000078        0x8 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
+                0x2000007c        0x8 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
  .data.EndPoints
-                0x20000080       0x28 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(USBCore.cpp.o)
-                0x20000080                EndPoints
+                0x20000084       0x28 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(USBCore.cpp.o)
+                0x20000084                EndPoints
  .data.impure_data
-                0x200000a8       0x60 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-impure.o)
+                0x200000ac       0x60 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-impure.o)
  .data._impure_ptr
-                0x20000108        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-impure.o)
-                0x20000108                _impure_ptr
- .data.tzinfo   0x2000010c       0x40 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-gettzinfo.o)
-                0x2000014c                . = ALIGN (0x4)
-                0x2000014c                PROVIDE (__preinit_array_start, .)
+                0x2000010c        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-impure.o)
+                0x2000010c                _impure_ptr
+ .data.tzinfo   0x20000110       0x40 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-gettzinfo.o)
+                0x20000150                . = ALIGN (0x4)
+                0x20000150                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x2000014c                PROVIDE (__preinit_array_end, .)
-                0x2000014c                . = ALIGN (0x4)
-                0x2000014c                PROVIDE (__init_array_start, .)
+                0x20000150                PROVIDE (__preinit_array_end, .)
+                0x20000150                . = ALIGN (0x4)
+                0x20000150                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x2000014c        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
- .init_array    0x20000150        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
- .init_array    0x20000154        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFi.cpp.o
- .init_array    0x20000158        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiClient.cpp.o
- .init_array    0x2000015c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiMDNSResponder.cpp.o
- .init_array    0x20000160        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiServer.cpp.o
- .init_array    0x20000164        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiSSLClient.cpp.o
- .init_array    0x20000168        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiUdp.cpp.o
- .init_array    0x2000016c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\bus_wrapper\source\nm_bus_wrapper_samd21.cpp.o
- .init_array    0x20000170        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\SPI\SPI.cpp.o
- .init_array    0x20000174        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(IPAddress.cpp.o)
- .init_array    0x20000178        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
- .init_array    0x2000017c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(USBCore.cpp.o)
- .init_array    0x20000180        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(variant.cpp.o)
-                0x20000184                PROVIDE (__init_array_end, .)
-                0x20000184                . = ALIGN (0x4)
-                0x20000184                PROVIDE (__fini_array_start, .)
+ .init_array    0x20000150        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
+ .init_array    0x20000154        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+ .init_array    0x20000158        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFi.cpp.o
+ .init_array    0x2000015c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiClient.cpp.o
+ .init_array    0x20000160        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiMDNSResponder.cpp.o
+ .init_array    0x20000164        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiServer.cpp.o
+ .init_array    0x20000168        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiSSLClient.cpp.o
+ .init_array    0x2000016c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\WiFiUdp.cpp.o
+ .init_array    0x20000170        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\WiFi101\bus_wrapper\source\nm_bus_wrapper_samd21.cpp.o
+ .init_array    0x20000174        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\SPI\SPI.cpp.o
+ .init_array    0x20000178        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(IPAddress.cpp.o)
+ .init_array    0x2000017c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(CDC.cpp.o)
+ .init_array    0x20000180        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(USBCore.cpp.o)
+ .init_array    0x20000184        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000/core.a(variant.cpp.o)
+                0x20000188                PROVIDE (__init_array_end, .)
+                0x20000188                . = ALIGN (0x4)
+                0x20000188                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array)
- .fini_array    0x20000184        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
-                0x20000188                PROVIDE (__fini_array_end, .)
+ .fini_array    0x20000188        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
+                0x2000018c                PROVIDE (__fini_array_end, .)
  *(.jcr*)
- .jcr           0x20000188        0x0 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
- .jcr           0x20000188        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtend.o
-                0x2000018c                . = ALIGN (0x4)
-                0x2000018c                __data_end__ = .
+ .jcr           0x2000018c        0x0 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
+ .jcr           0x2000018c        0x4 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtend.o
+                0x20000190                . = ALIGN (0x4)
+                0x20000190                __data_end__ = .
 
-.igot.plt       0x2000018c        0x0 load address 0x00008ce4
+.igot.plt       0x20000190        0x0 load address 0x00008ce8
  .igot.plt      0x00000000        0x0 c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
 
-.bss            0x2000018c     0x1674 load address 0x00008ce4
-                0x2000018c                . = ALIGN (0x4)
-                0x2000018c                __bss_start__ = .
+.bss            0x20000190     0x1670 load address 0x00008ce8
+                0x20000190                . = ALIGN (0x4)
+                0x20000190                __bss_start__ = .
  *(.bss*)
- .bss           0x2000018c       0x1c c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
- .bss.Udp       0x200001a8      0xb20 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x200001a8                Udp
+ .bss           0x20000190       0x1c c:/users/terotoivola/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv6-m/crtbegin.o
+ .bss.Udp       0x200001ac      0xb20 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x200001ac                Udp
  .bss._ZL11INADDR_NONE
-                0x20000cc8        0x8 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
- .bss.epoch     0x20000cd0        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cd0                epoch
- .bss.status    0x20000cd4        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cd4                status
- .bss.server    0x20000cd8       0x14 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cd8                server
- .bss.d         0x20000cec        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cec                d
- .bss.mo        0x20000cf0        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cf0                mo
+                0x20000ccc        0x8 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+ .bss.epoch     0x20000cd4        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cd4                epoch
+ .bss.status    0x20000cd8        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cd8                status
+ .bss.server    0x20000cdc       0x14 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cdc                server
+ .bss.d         0x20000cf0        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cf0                d
+ .bss.mo        0x20000cf4        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cf4                mo
  .bss.adderResetTime
-                0x20000cf4        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cf4                adderResetTime
- .bss.h         0x20000cf8        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cf8                h
+                0x20000cf8        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cf8                adderResetTime
+ .bss.h         0x20000cfc        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000cfc                h
  .bss.packetBuffer
-                0x20000cfc       0x30 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000cfc                packetBuffer
+                0x20000d00       0x30 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000d00                packetBuffer
  .bss.epochtest
-                0x20000d2c        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000d2c                epochtest
- .bss.m         0x20000d30        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000d30                m
- .bss.adder     0x20000d34        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
-                0x20000d34                adder
+                0x20000d30        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000d30                epochtest
+ .bss.m         0x20000d34        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
+                0x20000d34                m
  .bss.lastAddedMinutes
                 0x20000d38        0x4 C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr1000.cpp.o
                 0x20000d38                lastAddedMinutes
