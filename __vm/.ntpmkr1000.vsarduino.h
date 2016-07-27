@@ -10,6 +10,7 @@
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
+#define _VMDEBUG 1
 #define F_CPU 48000000L
 #define ARDUINO 10609
 #define ARDUINO_SAMD_MKR1000
@@ -53,5 +54,5 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <variant.h> 
 #undef cli
 #define cli()
-#include <ntpmkr1000.ino>
+#include "ntpmkr1000.ino"
 #endif

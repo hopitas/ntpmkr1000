@@ -20,18 +20,26 @@ const int motor2Pin = 4;    // H-bridge leg 2 (pin 7, 2A)
 const int conLedRed = 7;
 const int ntpLedBlue = 8;
 bool change = true;
-int sec = 0;
 unsigned long epoch;
 unsigned long epochtest;
 bool connected = false;
 bool ntpsuccess = false;
 int adder = 0;
 int adderResetTime = 0;
+int y = 0;
+int dow = 0;
+int mo = 0;
+int d = 0;
+int h = 0;
+int m = 0;
+int s = 0;
+bool DST = true; // needs to be set, true if summer
+int lastAddedMinutes = 0;
 
 RTCZero rtc;
 
-char ssid[] = "";     //  your network SSID (name)
-char pass[] = "";   // your network password
+char ssid[] = "herotero";     //  your network SSID (name)
+char pass[] = "innostunutsonni";   // your network password
 int keyIndex = 0;            // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
@@ -109,6 +117,14 @@ void setup() {
 }
 
 void loop() {
+
+	y = rtc.getYear();
+	mo = rtc.getMonth();
+	d = rtc.getDay();
+	h = rtc.getHours() + GMT;
+	m = rtc.getMinutes();
+	s = rtc.getSeconds();
+
 	// printDate();
 	// printTime();
 	// Serial.println();
@@ -137,18 +153,18 @@ void loop() {
 					client.println("<html>");
 					// output the value of each analog input pin
 					client.print("Time ");
-					client.print(rtc.getHours() + GMT);
+					client.print(h);
 					client.print(":");
-					client.print(rtc.getMinutes());
+					client.print(m);
 					client.print(":");
-					client.print(rtc.getSeconds());
+					client.print(s);
 					client.println("<br>");
 					client.print("Date ");
-					client.print(rtc.getDay());
+					client.print(d);
 					client.print("/");
-					client.print(rtc.getMonth());
+					client.print(mo);
 					client.print("/");
-					client.print(rtc.getYear());
+					client.print(y);
 					client.println("</html>");
 					client.println("<br>");
 					client.print("Last connection succesfull: ");
@@ -161,6 +177,10 @@ void loop() {
 					client.print("signal strength (RSSI):");
 					client.print(rssi);
 					client.print(" dBm");
+					client.println("<br>");
+					client.print("Minutes added:");
+					client.print(lastAddedMinutes);
+					client.print(" min");
 					client.println("</html>");
 					break;
 				}
@@ -182,14 +202,8 @@ void loop() {
 		Serial.println("client disonnected");
 	}
 
-	// if the button is high, adjust time constantly:
-	if (digitalRead(buttonPin) == HIGH) {
-		move(change);
-		change = !change;
-	}
-
 	// Adjust time every minute
-	if (rtc.getSeconds() == 0)
+	if (s == 0)
 	{
 		Serial.print("Seconds: ");
 		Serial.println(0);
@@ -197,29 +211,60 @@ void loop() {
 		change = !change;
 		if (adder == 0)
 		{
-			adderResetTime = rtc.getMinutes();
+			adderResetTime = m;
 		}
-		adder = adder++;
+		adder++;
 	}
 
-	// If for some reason clock jumps some adjustment, sync once in an hour.
-	if (rtc.getMinutes() == 0 && rtc.getSeconds() == 5)
+	// if the button is high, adjust time constantly:
+	if (digitalRead(buttonPin) == HIGH) {
+		move(change);
+		change = !change;
+		adder = 1;
+	}
+
+	// check every hour if for some reason clock is left behind
+	if ((adderResetTime - m) == 0 && s == 0 && adder > 5)
 	{
-		if (adder < (60-adderResetTime))
+		int addminutes = 60 - adder;
+		lastAddedMinutes = addminutes;
+		Serial.print("Fixing seconds: ");
+		Serial.println(addminutes);
+		while (addminutes > 0)
 		{
-			int addminutes = (60 - adderResetTime) - adder;
-			while (addminutes > 0)
-			{
-				move(change);
-				change = !change;
-				addminutes--;
-			}
+			move(change);
+			change = !change;
+			addminutes--;
 		}
-		adder = 0;
+		adder = 1;
+	}
+
+	// Daylight savings
+
+	//winter time
+	if (dow == 7 && mo == 10 && d >= 25 && d <= 31 && h == 3 && m == 0 && s == 0 && DST == true)
+	{
+		//	wait 1h;
+		delay(36000000);
+		DST = false;
+	}
+
+	//summer time
+	if (dow == 7 && mo == 3 && d >= 25 && d <= 31 && h == 2 && m == 0 && s == 0 && DST == false)
+	{
+		int i = 0;
+		//	forward 1h;
+		while (i < 60)
+		{
+			move(change);
+			change = !change;
+			i++;
+		}
+		DST = true;
 	}
 
 	// check sync rtc with ntp every hour
-	if (rtc.getMinutes() == 30 && rtc.getSeconds() == 5)
+	if ((m == 30) && (s == 10))
 	{
 		// attempt to connect to WiFi network:
 		if (WiFi.status() != 3) {
