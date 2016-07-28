@@ -24,7 +24,7 @@ unsigned long epoch;
 unsigned long epochtest;
 bool connected = false;
 bool ntpsuccess = false;
-int adder = 1;
+int adder = 0;
 int adderResetTime = 0;
 int y = 0;
 int dow = 0;
@@ -209,7 +209,7 @@ void loop() {
 		Serial.println(0);
 		move(change);
 		change = !change;
-		if (adder == 1)
+		if (adder == 0)
 		{
 			adderResetTime = m;
 		}
@@ -220,13 +220,13 @@ void loop() {
 	if (digitalRead(buttonPin) == HIGH) {
 		move(change);
 		change = !change;
-		adder = 1;
+		adder = 0;
 	}
 
 	// check every hour if for some reason clock is left behind
 	if ((adderResetTime - m) == 0 && s == 0 && adder > 5)
 	{
-		int addminutes = 60 - adder;
+		int addminutes = 60 - adder + 1;
 		lastAddedMinutes = addminutes;
 		Serial.print("Fixing seconds: ");
 		Serial.println(addminutes);
@@ -236,7 +236,7 @@ void loop() {
 			change = !change;
 			addminutes--;
 		}
-		adder = 1;
+		adder = 0;
 	}
 
 	// Daylight savings
