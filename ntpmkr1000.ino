@@ -34,8 +34,18 @@ int h = 0;
 int m = 0;
 int s = 0;
 bool DST = true; // needs to be set, true if summer
+
+int yntpcon = 0;
+int montpcon = 0;
+int dntpcon = 0;
+int hntpcon = 0;
+int mntpcon = 0;
+int sntpcon = 0;
+
+
 int lastAddedMinutes = 0;
 
+/* Create an rtc object */
 RTCZero rtc;
 
 char ssid[] = "herotero";     //  your network SSID (name)
@@ -151,7 +161,6 @@ void loop() {
 					client.println();
 					client.println("<!DOCTYPE HTML>");
 					client.println("<html>");
-					// output the value of each analog input pin
 					client.print("Time ");
 					client.print(h);
 					client.print(":");
@@ -165,13 +174,25 @@ void loop() {
 					client.print(mo);
 					client.print("/");
 					client.print(y);
-					client.println("</html>");
 					client.println("<br>");
 					client.print("Last connection succesfull: ");
 					client.print(connected);
 					client.println("<br>");
 					client.print("Last ntp connection succesfull: ");
 					client.print(ntpsuccess);
+					client.println("<br>");
+					client.print("Last successful ntp connection time: ");
+					client.print(dntpcon);
+					client.print("/");
+					client.print(montpcon);
+					client.print("/");
+					client.print(yntpcon);
+					client.print(" ");
+					client.print(hntpcon);
+					client.print(":");
+					client.print(mntpcon);
+					client.print(":");
+					client.print(sntpcon);
 					client.println("<br>");
 					long rssi = WiFi.RSSI();
 					client.print("signal strength (RSSI):");
@@ -302,6 +323,12 @@ void loop() {
 			Serial.println(epochtest);
 			rtc.setEpoch(epochtest);
 			Serial.println();
+			yntpcon = y;
+			montpcon = mo;
+			dntpcon = d;
+			hntpcon = h;
+			mntpcon = m;
+			sntpcon = s;
 			epochtest = 0;
 		}
 	}
