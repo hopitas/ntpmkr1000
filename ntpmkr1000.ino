@@ -10,10 +10,11 @@
   This code is in the public domain.
 */
 
+#include <RTCZero.h>
 #include <SPI.h>
 #include <WiFi101.h>
 #include <WiFiUdp.h>
-#include <RTCZero.h>
+
 const int buttonPin = 6;    // button input
 const int motor1Pin = 3;    // H-bridge leg 1 (pin 2, 1A)
 const int motor2Pin = 4;    // H-bridge leg 2 (pin 7, 2A)
@@ -245,7 +246,7 @@ void loop() {
 	}
 
 	// check every hour if for some reason clock is left behind
-	if ((adderResetTime - m) == 0 && s == 0 && adder > 5)
+	if ((adderResetTime - m) == 0 && s == 0 && adder > 10)
 	{
 		int addminutes = 60 - adder + 1;
 		lastAddedMinutes = addminutes;
@@ -256,6 +257,11 @@ void loop() {
 			move(change);
 			change = !change;
 			addminutes--;
+		}
+		while (addminutes < 0)
+		{
+			delay(60000);
+			addminutes++;
 		}
 		adder = 0;
 	}

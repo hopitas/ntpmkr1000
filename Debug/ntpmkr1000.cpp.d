@@ -100,8 +100,9 @@ C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr10
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/RingBuffer.h \
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/USB/USB_host.h \
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/USB/samd21_host.h \
- C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\libraries\SPI/SPI.h \
+ C:\Users\TeroToivola\Documents\Arduino\libraries\RTCZero\src/RTCZero.h \
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/Arduino.h \
+ C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\libraries\SPI/SPI.h \
  C:\Users\TeroToivola\Documents\Arduino\libraries\WiFi101\src/WiFi101.h \
  C:\Users\TeroToivola\Documents\Arduino\libraries\WiFi101\src/driver/include/m2m_wifi.h \
  C:\Users\TeroToivola\Documents\Arduino\libraries\WiFi101\src/common/include/nm_common.h \
@@ -123,5 +124,4 @@ C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr10
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/Server.h \
  C:\Users\TeroToivola\Documents\Arduino\libraries\WiFi101\src/WiFiUdp.h \
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/Udp.h \
- C:\Users\TeroToivola\Documents\Arduino\libraries\RTCZero\src/RTCZero.h \
- C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\5ylcdkcm.0l4\Micro\ Platforms\default\debuggers/VM_DBG/VM_DBG.h
+ C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\1ed4ciyu.1jt\Micro\ Platforms\default\debuggers/VM_DBG/VM_DBG.h
