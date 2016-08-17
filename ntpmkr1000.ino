@@ -26,7 +26,7 @@ unsigned long epochtest;
 bool connected = false;
 bool ntpsuccess = false;
 int adder = 0;
-int adderResetTime = 0;
+int adderResetMinute = 0;
 int y = 0;
 int dow = 0;
 int mo = 0;
@@ -49,8 +49,8 @@ int lastAddedMinutes = 0;
 /* Create an rtc object */
 RTCZero rtc;
 
-char ssid[] = "herotero";     //  your network SSID (name)
-char pass[] = "innostunutsonni";   // your network password
+char ssid[] = "";     //  your network SSID (name)
+char pass[] = "";   // your network password
 int keyIndex = 0;            // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
@@ -99,8 +99,8 @@ void setup() {
 		delay(10000);
 	}
 
-	server.begin();
-	// you're connected now, so print out the status:
+	  server.begin();
+	  // you're connected now, so print out the status:
 	printWifiStatus();
 	digitalWrite(conLedRed, HIGH);
 	connected = true;
@@ -231,11 +231,11 @@ void loop() {
 		Serial.println(0);
 		move(change);
 		change = !change;
-		if (adder == 0)
-		{
-			adderResetTime = m;
-		}
-		adder++;
+		//if (adder == 0)
+		//{
+		//  adderResetMinute = m;
+		//}
+		//adder++;
 	}
 
 	// if the button is high, adjust time constantly:
@@ -246,32 +246,37 @@ void loop() {
 	}
 
 	// check every hour if for some reason clock is left behind
-	if ((adderResetTime - m) == 0 && s == 0 && adder > 10)
-	{
-		int addminutes = 60 - adder + 1;
-		lastAddedMinutes = addminutes;
-		Serial.print("Fixing seconds: ");
-		Serial.println(addminutes);
-		while (addminutes > 0)
-		{
-			move(change);
-			change = !change;
-			addminutes--;
-		}
-		while (addminutes < 0)
-		{
-			delay(60000);
-			addminutes++;
-		}
-		adder = 0;
-	}
+	//if ((adderResetMinute - m) == 0 && s == 0 && adder > 10)
+	//{
+	   // //this if it skips this loop for an hour for some reason...
+	   // while (adder > 60)
+	   // {
+		  //  adder = adder - 60 + 1;
+	   // }
+	//  int addminutes = 60 - adder + 1;
+	//  lastAddedMinutes = addminutes;
+	//  Serial.print("Fixing minutes: ");
+	//  Serial.println(addminutes);
+	//  while (addminutes > 0)
+	//  {
+	//    move(change);
+	//    change = !change;
+	//    addminutes--;
+	//  }
+	//  while (addminutes < 0)
+	//  {
+	//    delay(60000);
+	//    addminutes++;
+	//  }
+	//  adder = 0;
+	//}
 
 	// Daylight savings
 
 	//winter time
 	if (dow == 7 && mo == 10 && d >= 25 && d <= 31 && h == 3 && m == 0 && s == 0 && DST == true)
 	{
-		//	wait 1h;
+		//  wait 1h;
 		delay(36000000);
 		DST = false;
 	}
@@ -280,7 +285,7 @@ void loop() {
 	if (dow == 7 && mo == 3 && d >= 25 && d <= 31 && h == 2 && m == 0 && s == 0 && DST == false)
 	{
 		int i = 0;
-		//	forward 1h;
+		//  forward 1h;
 		while (i < 60)
 		{
 			move(change);
@@ -301,7 +306,7 @@ void loop() {
 			status = WiFi.begin(ssid, pass);
 			// wait 10 seconds for connection:
 			delay(10000);
-			digitalWrite(conLedRed, HIGH);
+			server.begin();
 		}
 
 		if (WiFi.status() != 3)
@@ -312,6 +317,7 @@ void loop() {
 		}
 		else
 		{
+			digitalWrite(conLedRed, HIGH);
 			epochtest = readLinuxEpochUsingNTP();
 			connected = true;
 		}
@@ -362,6 +368,7 @@ unsigned long readLinuxEpochUsingNTP()
 	sendNTPpacket(timeServer); // send an NTP packet to a time server
 	// wait to see if a reply is available
 	delay(1000);
+
 
 	if (Udp.parsePacket()) {
 		Serial.println("NTP time received");
