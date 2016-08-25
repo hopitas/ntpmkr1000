@@ -15,36 +15,34 @@
 #include <WiFi101.h>
 #include <WiFiUdp.h>
 
+
+// This is not detected automagically, you need to set it :(
+bool DST = true; // needs to be set, true if summer
+
 const int buttonPin = 6;    // button input
 const int motor1Pin = 3;    // H-bridge leg 1 (pin 2, 1A)
 const int motor2Pin = 4;    // H-bridge leg 2 (pin 7, 2A)
-const int conLedRed = 7;
-const int ntpLedBlue = 8;
-bool change = true;
+const int conLedRed = 7;	// Internet connection LED pin
+const int ntpLedBlue = 8;	// NTP connection LED pin
+bool change = true;			// Used for changing volt polarity for clock motor
 unsigned long epoch;
 unsigned long epochtest;
-bool connected = false;
-bool ntpsuccess = false;
-int adder = 0;
-int adderResetMinute = 0;
-int y = 0;
-int dow = 0;
-int mo = 0;
-int d = 0;
-int h = 0;
-int m = 0;
-int s = 0;
-bool DST = true; // needs to be set, true if summer
+bool connected = false;		// do we have wifi connection
+bool ntpsuccess = false;	// do we have NTP connection
+int y = 0;					// year
+int dow = 0;				// day of week
+int mo = 0;					// month
+int d = 0;					// day
+int h = 0;					// hour
+int m = 0;					// minute
+int s = 0;					// second
 
-int yntpcon = 0;
+int yntpcon = 0;    // Used for determining last successfull NTP connection time
 int montpcon = 0;
 int dntpcon = 0;
 int hntpcon = 0;
 int mntpcon = 0;
 int sntpcon = 0;
-
-
-int lastAddedMinutes = 0;
 
 /* Create an rtc object */
 RTCZero rtc;
@@ -55,7 +53,7 @@ int keyIndex = 0;            // your network key Index number (needed only for W
 
 int status = WL_IDLE_STATUS;
 
-WiFiServer server(80);
+WiFiServer server(80);  // web server for monitoring the clock ntp sync etc
 
 // Used for NTP
 unsigned int localPort = 2390;      // local port to listen for UDP packets
@@ -66,9 +64,15 @@ const int NTP_PACKET_SIZE = 48; // NTP time stamp is in the first 48 bytes of th
 byte packetBuffer[NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing packets
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 
-const int GMT = 3; //change this to adapt it to your time zone
+int GMT = 2; //change this to adapt it to your time zone
 
 void setup() {
+
+	//Set GMT at startup, Finland if DST true, then summer +3, else +2
+	if (DST == true)
+	{
+		GMT = 3;
+	}
 
 	// set the button as an input:
 	pinMode(buttonPin, INPUT);
@@ -77,6 +81,7 @@ void setup() {
 	pinMode(motor2Pin, OUTPUT);
 	pinMode(conLedRed, OUTPUT);
 	pinMode(ntpLedBlue, OUTPUT);
+	// LED status low at start
 	digitalWrite(conLedRed, LOW);
 	digitalWrite(ntpLedBlue, LOW);
 
@@ -99,8 +104,8 @@ void setup() {
 		delay(10000);
 	}
 
-	  server.begin();
-	  // you're connected now, so print out the status:
+	server.begin(); //start web server
+	// you're connected now, so print out the status:
 	printWifiStatus();
 	digitalWrite(conLedRed, HIGH);
 	connected = true;
@@ -129,18 +134,20 @@ void setup() {
 
 void loop() {
 
+	// Set RTC time
 	y = rtc.getYear();
 	mo = rtc.getMonth();
 	d = rtc.getDay();
-	h = rtc.getHours() + GMT;
+	h = rtc.getHours()+GMT;
+	if (h > 23)
+	{
+		h = h - 24;
+	}
 	m = rtc.getMinutes();
 	s = rtc.getSeconds();
+	dow = dayofweek(y, m, d);
 
-	// printDate();
-	// printTime();
-	// Serial.println();
-	// delay(1000);
-	// listen for incoming clients
+	// Web server, listen for incoming clients
 	WiFiClient client = server.available();
 	if (client) {
 		Serial.println("new client");
@@ -199,10 +206,6 @@ void loop() {
 					client.print("signal strength (RSSI):");
 					client.print(rssi);
 					client.print(" dBm");
-					client.println("<br>");
-					client.print("Minutes added:");
-					client.print(lastAddedMinutes);
-					client.print(" min");
 					client.println("</html>");
 					break;
 				}
@@ -227,62 +230,29 @@ void loop() {
 	// Adjust time every minute
 	if (s == 0)
 	{
-		Serial.print("Seconds: ");
-		Serial.println(0);
 		move(change);
 		change = !change;
-		//if (adder == 0)
-		//{
-		//  adderResetMinute = m;
-		//}
-		//adder++;
 	}
 
 	// if the button is high, adjust time constantly:
 	if (digitalRead(buttonPin) == HIGH) {
 		move(change);
 		change = !change;
-		adder = 0;
 	}
-
-	// check every hour if for some reason clock is left behind
-	//if ((adderResetMinute - m) == 0 && s == 0 && adder > 10)
-	//{
-	   // //this if it skips this loop for an hour for some reason...
-	   // while (adder > 60)
-	   // {
-		  //  adder = adder - 60 + 1;
-	   // }
-	//  int addminutes = 60 - adder + 1;
-	//  lastAddedMinutes = addminutes;
-	//  Serial.print("Fixing minutes: ");
-	//  Serial.println(addminutes);
-	//  while (addminutes > 0)
-	//  {
-	//    move(change);
-	//    change = !change;
-	//    addminutes--;
-	//  }
-	//  while (addminutes < 0)
-	//  {
-	//    delay(60000);
-	//    addminutes++;
-	//  }
-	//  adder = 0;
-	//}
 
 	// Daylight savings
 
 	//winter time
-	if (dow == 7 && mo == 10 && d >= 25 && d <= 31 && h == 3 && m == 0 && s == 0 && DST == true)
+	if (dow == 0 && mo == 10 && d >= 25 && d <= 31 && h == 3 && m == 0 && s == 0 && DST == true)
 	{
 		//  wait 1h;
 		delay(36000000);
+		GMT = 2;
 		DST = false;
 	}
 
 	//summer time
-	if (dow == 7 && mo == 3 && d >= 25 && d <= 31 && h == 2 && m == 0 && s == 0 && DST == false)
+	if (dow == 0 && mo == 3 && d >= 25 && d <= 31 && h == 2 && m == 0 && s == 0 && DST == false)
 	{
 		int i = 0;
 		//  forward 1h;
@@ -292,6 +262,7 @@ void loop() {
 			change = !change;
 			i++;
 		}
+		GMT = 3;
 		DST = true;
 	}
 
@@ -306,7 +277,6 @@ void loop() {
 			status = WiFi.begin(ssid, pass);
 			// wait 10 seconds for connection:
 			delay(10000);
-			server.begin();
 		}
 
 		if (WiFi.status() != 3)
@@ -320,6 +290,7 @@ void loop() {
 			digitalWrite(conLedRed, HIGH);
 			epochtest = readLinuxEpochUsingNTP();
 			connected = true;
+			server.begin(); //start web server
 		}
 		if (epochtest == 0)
 		{
@@ -399,27 +370,6 @@ unsigned long readLinuxEpochUsingNTP()
 	}
 }
 
-void printTime()
-{
-	print2digits(rtc.getHours() + GMT);
-	Serial.print(":");
-	print2digits(rtc.getMinutes());
-	Serial.print(":");
-	print2digits(rtc.getSeconds());
-	Serial.println();
-}
-
-void printDate()
-{
-	Serial.print(rtc.getDay());
-	Serial.print("/");
-	Serial.print(rtc.getMonth());
-	Serial.print("/");
-	Serial.print(rtc.getYear());
-
-	Serial.print(" ");
-}
-
 // send an NTP request to the time server at the given address
 unsigned long sendNTPpacket(IPAddress & address)
 {
@@ -462,9 +412,17 @@ void printWifiStatus() {
 	Serial.println(" dBm");
 }
 
-void print2digits(int number) {
-	if (number < 10) {
-		Serial.print("0");
-	}
-	Serial.print(number);
+//void print2digits(int number) {
+//	if (number < 10) {
+//		Serial.print("0");
+//	}
+//	Serial.print(number);
+//}
+
+//gives day of week for a given date Sunday=0, Saturday=6
+int dayofweek(int y, int m, int d)
+{
+	static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+	y -= m < 3;
+	return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
 }

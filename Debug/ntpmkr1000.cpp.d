@@ -124,4 +124,4 @@ C:\Users\TeroToivola\AppData\Local\Temp\VMicroBuilds\ntpmkr1000\mkr1000\ntpmkr10
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/Server.h \
  C:\Users\TeroToivola\Documents\Arduino\libraries\WiFi101\src/WiFiUdp.h \
  C:\Users\TeroToivola\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.6\cores\arduino/Udp.h \
- C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\moatypfu.gks\Micro\ Platforms\default\debuggers/VM_DBG/VM_DBG.h
+ C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\zn5sfln3.5ar\Micro\ Platforms\default\debuggers/VM_DBG/VM_DBG.h
